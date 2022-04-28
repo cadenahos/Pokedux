@@ -1,29 +1,36 @@
 import React, {useEffect} from 'react';
-import { List } from 'semantic-ui-react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getPokemons } from '../../api/getPokemons';
 import { setPokemon } from '../../actions';
 import PokemonList from '../../components/PokemonList';
 import Searcher from '../../components/Searcher';
+import MessageError from '../../components/ErrorMessage';
 import './styles.css';
 
-const mapStateToProps = state =>({
-  list: state.list
-})
-
-const mapDispatchToProps = dispatch => ({
-  setPokemons: value => dispatch(setPokemon(value)) 
-})
-function Home({list, setPokemons}) {
+function Home() {
+  const ErrorMesage = true;
+  const dispatch = useDispatch();
+  const list = useSelector(state => state.list);
   useEffect(() =>{
-    getPokemons().then((res) => setPokemons(res.data.results));
+    getPokemons().then((res) => {
+      dispatch(setPokemon(res.data.results))
+    });
   },[])
   return (
-    <div className='Home'>
-      <Searcher />
-      <PokemonList/>
-    </div>
+    <>
+
+     {
+      ErrorMesage 
+      ? 
+       <MessageError/>
+      : 
+        <div className='Home'> 
+          <Searcher /> 
+          <PokemonList pokemons={list}/> 
+        </div>
+     }
+    </>
   );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;
