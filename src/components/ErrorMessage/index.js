@@ -2,7 +2,7 @@ import React from 'react';
 import { Message } from 'semantic-ui-react';
 import { FcSupport } from "react-icons/fc";
 
-const MessageError = () => {    
+const MessageError = ({message}) => {    
     const danger = {
         color: 'red',
         margin: '20px',
@@ -13,7 +13,7 @@ const MessageError = () => {
         <Message.Header>Error</Message.Header>
         <FcSupport style={danger}/>
         <p>
-            We have an error loading the page
+           {message}
         </p>
     </Message>
     )
