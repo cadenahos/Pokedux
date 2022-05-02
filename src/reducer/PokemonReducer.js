@@ -12,7 +12,7 @@ const pokemonReducer = (state = initialState, action)=>{
         case SET_ERROR:
             return { ...state, error: action.payload.message };
         case CLEAR_ERROR:
-            return { ...state, error: '' };
+            return { ...state, error: null };
         default:
             return{...state}
     }

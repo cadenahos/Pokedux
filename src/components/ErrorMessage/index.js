@@ -1,8 +1,9 @@
 import React from 'react';
-import { Message } from 'semantic-ui-react';
+import { Button, Message } from 'semantic-ui-react';
 import { FcSupport } from "react-icons/fc";
+import { MAIN_COLOR, FAV_COLOR } from "../../utils/constants";
 
-const MessageError = ({message}) => {    
+const MessageError = ({message,handleDismiss}) => {    
     const danger = {
         color: 'red',
         margin: '20px',
@@ -15,6 +16,12 @@ const MessageError = ({message}) => {
         <p>
            {message}
         </p>
+        <Button color={MAIN_COLOR}
+             action={{
+            onClick: () => handleDismiss,
+            }}
+        >clear</Button>
+       
     </Message>
     )
 }

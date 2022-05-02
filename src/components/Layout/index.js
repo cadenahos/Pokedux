@@ -15,7 +15,7 @@ const Layout = ({ children }) => {
     <div>
       <Menu />
       {errorMessage && (
-        <MessageError message={errorMessage}/>
+        <MessageError message={errorMessage} removeError={handleDismiss}/>
       )}
       <div className='Layout-content'>{children}</div>
     </div>
